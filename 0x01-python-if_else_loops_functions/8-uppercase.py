@@ -11,5 +11,3 @@ def uppercase(str):
             code = 0
         print("{:s}".format(chr(char - code)), end='')
     print()
-
-uppercase("Best")
