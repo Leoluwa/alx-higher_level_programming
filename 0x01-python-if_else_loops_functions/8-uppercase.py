@@ -6,7 +6,10 @@ def uppercase(str):
     for i in range(0, length):
         char = ord(str[i])
         if (char > 96) and (char < 123):
-            print(chr(char - 32), end='')
+            code = 32
         else:
-            print(chr(char), end='')
+            code = 0
+        print("{:s}".format(chr(char - code)), end='')
     print()
+
+uppercase("Best")
