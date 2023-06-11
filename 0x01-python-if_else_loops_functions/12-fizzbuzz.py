@@ -18,5 +18,3 @@ def fizzbuzz():
             print("{:s}".format(buz), end=" ")
         else:
             print(i, end=" ")
-
-fizzbuzz()
