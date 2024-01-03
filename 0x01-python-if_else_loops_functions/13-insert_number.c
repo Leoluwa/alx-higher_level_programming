@@ -1,51 +1,32 @@
 #include "lists.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
- * insert_node - inserts a number in a sorted singly linked list
- * @head: pointer to a pointer to the sorted list
- * @number: number to be inserted into the list
- * Return: address of the new node or,
- *         NULL if it failed
- *
+ * insert_node - Inserts a number into a sorted singly-linked list.
+ * @head: A pointer the head of the linked list.
+ * @number: The number to insert.
+ * Return: 0 If the function fails or pointer to the new node.
  */
 listint_t *insert_node(listint_t **head, int number)
 {
-	int status;
-	listint_t *new;
-	listint_t *current;
-
-	current = *head;
+	listint_t *node = *head, *new;
 
 	new = malloc(sizeof(listint_t));
 	if (new == NULL)
 		return (NULL);
-
-	if(*head == NULL)
-	{
-		status = 0;
-		current = *head = new;
-	}
-	else
-	{
-		status = 1;
-	}
-	
 	new->n = number;
-	new->next = NULL;
 
-	while (status)
+	if (node == NULL || node->n >= number)
 	{
-		if (((current->next->n) > (new->n)) && ((new->n) > (current->n)))
-		{
-			new->next = current->next;
-			current->next = new;
-			status = 0;
-		}
-
-		current = current->next;
+		new->next = node;
+		*head = new;
+		return (new);
 	}
+
+	while (node && node->next && node->next->n < number)
+		node = node->next;
+
+	new->next = node->next;
+	node->next = new;
 
 	return (new);
 }
